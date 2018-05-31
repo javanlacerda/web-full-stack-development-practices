@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <link rel='shortcut icon' type='image/x-icon' href="steam.ico" />
+  <link rel="stylesheet" href="style.css">
+  <title>My frontend</title>
+</head>
+
+<body style="background: #151515;">
+  <nav style="background: #020202;" class="navbar navbar-expand-lg navbar-dark bg fixed-top" id="mainNav">
+
+    <div style="margin: 0 auto;">
+      <h1 style="color: #FFFFFF; font: italic bold 55px Lucida Grande, sans-serif;">
+        <img width="75px; position: relative" alt="Ícone" src="steam.png" /> My Frontend Practice
+        <h1>
+        </h1>
+    </div>
+  </nav>
+  <hr>
+  </br>
+  <div>
+    <button id="btnForm" type="button" class="btn btn-outline-success myButton" onclick="showForm()">
+      <p style="font: italic bold 60px verdana, sans-serif; position: relative;">+</p>
+    </button>
+  </div>
+  <div id="form" style="display: none; background-color: #FFFFFF; width: 70%" class="card-javan width">
+
+    <div style="position: relative; width: 75%; margin: 0 auto; top: 55px;">
+
+      <h1 style="text-align: center; color: #000000">
+        <b>Send message :)</b>
+      </h1>
+      <ul>
+        <hr style="height:2px; border:none; color:#000; background-color:#000; margin-top: 0px; margin-bottom: 0px; width: 85%;">
+        <? if($primeiro_ponto != NULL && $ultimo_ponto != NULL && $quantidade_de_trajetos>       
+      </ul>
+
+
+      <input style="width: 15%; padding: 10px;" type="text" class="form-control" id="credential" placeholder="Credential">
+    </br>
+      <input style="width: 15%; padding: 10px;" type="text" class="form-control" id="passcode" placeholder="Passcode">
+    </br>
+          
+        <form>
+            <input style="width: 25%; padding: 10px; "type="text" class="form-control" id="title" placeholder="Title">
+        </br>
+            <input style="width: 50%; padding: 10px;" type="text" class="form-control" id="author" placeholder="Author">  
+          </br>
+
+            <textarea style="width: 75%;padding: 10px;" type="text" class="form-control" id="mensagem" placeholder="Message" cols="30" rows="3"></textarea>
+          </br>
+            <button style="width: 100%; position: relative;"type="button" class="btn btn-outline-success my-2 my-sm-0 pull-right button-position" onclick="cadastrar()"><b>--------- Send ---------</b></button>
+            
+
+        <hr style="position: relative; height:1px; border:none; color:#000; background-color:#000; margin-top: 25px; margin-bottom: 25px; width: 85%;">
+        <? if($primeiro_ponto != NULL && $ultimo_ponto != NULL && $quantidade_de_trajetos>
+
+            <input style="width: 10%; padding: 10px; position: relative; border-radius: 6px;" type="text" id="deletar" placeholder="ID">
+            <button style="position: relative;"  type="button" class="btn btn-outline-success my-2 my-sm-0 pull-right button-position" onclick="do_delete()"><b>Delete</b></button>
+            <hr style="position: relative; height:1px; border:none; color:#000; background-color:#000; margin-top: 25px; margin-bottom: 25px; width: 85%;">
+            <? if($primeiro_ponto != NULL && $ultimo_ponto != NULL && $quantidade_de_trajetos>    
+      </div>
+    </br></br></br>  
+    <div>
+      <input style="width: 65%; padding: 10px; margin: 0 auto;" type="text" class="form-control" id="filtro" placeholder="Filter">
+      </div>
+    </br></br></br>  
+
+    </div>
+  </div>     
+</br></br></br> 
+  <div style="background: linear-gradient(#151515,#FFFFFF);" id="listagem">
+  </div>
+
+
+  <script src="client.js"></script>
+
+  <footer class="footer">Developed by <b>Javan Lacerda</b> Copyright©</footer>
+  
+</body>
+</html>
