@@ -1,4 +1,4 @@
-package com.msgproject.api;
+package com.msgproject.api.services;
 
 
 import java.util.Collection;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+
+import com.msgproject.api.entities.Message;
 
 @Service
 public class MessagesServiceImpl {
@@ -18,21 +20,20 @@ public class MessagesServiceImpl {
 		return this.messages.values();
 	}
 
-	public Message listarPorId(String id) {
+	public Message listById(String id) {
 
 		return this.messages.get(id);
 	}
 
-	public Message cadastrar(Message cliente) {
+	public Message register(Message message) {
 		
-		
-		return this.messages.put(cliente.getId(), cliente);
+		return this.messages.put(message.getId(), message);
 	}
 
-	public Message atualizar(Message cliente) {
+	public Message update(Message message) {
 		
-		this.messages.remove(cliente.getId());
-		return messages.put(cliente.getId(), cliente);
+		this.messages.remove(message.getId());
+		return messages.put(message.getId(), message);
 	}
 
 	public Message remove(String id) {

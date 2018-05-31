@@ -1,4 +1,4 @@
-.card-javan {
+  .card-javan {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 12px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -10,7 +10,6 @@
   }
 
   .width {
-    /* Add shadows to create the "card" effect */
     position: relative;
     top: 10px;
     margin: 0 auto;

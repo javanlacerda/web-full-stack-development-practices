@@ -1,4 +1,4 @@
-package com.msgproject.api;
+package com.msgproject.api.entities;
 
 import javax.validation.constraints.NotEmpty;
 

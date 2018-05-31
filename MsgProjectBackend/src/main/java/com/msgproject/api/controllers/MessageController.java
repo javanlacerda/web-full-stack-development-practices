@@ -1,9 +1,7 @@
-package com.msgproject.api;
+package com.msgproject.api.controllers;
 
 import java.util.Collection;
-
 import javax.validation.Valid;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,20 +11,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.msgproject.api.entities.Message;
+import com.msgproject.api.services.MessagesServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/msgs")
-public class ClienteController {
+public class MessageController {
 
 	private MessagesServiceImpl service = new MessagesServiceImpl();
 	private int idControll = 1;
 	private final String credential = "javan:javan123";
-
-	final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	final CorsConfiguration config = new CorsConfiguration();
 
 	@GetMapping
 	public Collection<Message> listAll() {
@@ -35,20 +31,20 @@ public class ClienteController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Message listarPorId(@PathVariable(name = "id") String id) {
+	public Message listById(@PathVariable(name = "id") String id) {
 
-		return service.listarPorId(id);
+		return service.listById(id);
 	}
 
 	@PostMapping
-	public Message cadastrar(@Valid @RequestBody Message msg) {
+	public Message register(@Valid @RequestBody Message msg) {
 
 		try {
 			if (msg.getCredentials().equals(this.credential)) {
 				String id = "" + this.idControll++;
 				msg.setId(id);
 				msg.setFrontend(msg.getCredentials().split(":")[0]);
-				return service.cadastrar(msg);
+				return service.register(msg);
 			} else {
 				throw new IllegalArgumentException("Wrong credentials!");
 			}
@@ -60,14 +56,14 @@ public class ClienteController {
 	}
 
 	@PutMapping
-	public Message atualizar(@Valid @RequestBody Message msg) {
+	public Message update(@Valid @RequestBody Message msg) {
 
 		try {
 			if (msg.getCredentials().equals(this.credential)) {
 				String id = "" + this.idControll++;
 				msg.setId(id);
 				msg.setFrontend(msg.getCredentials().split(":")[0]);
-				return service.cadastrar(msg);
+				return service.register(msg);
 			} else {
 				throw new IllegalArgumentException("Wrong credentials!");
 			}

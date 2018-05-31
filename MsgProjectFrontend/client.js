@@ -1,17 +1,17 @@
 visibility = false;
 
 
-const listagem = document.getElementById("listagem");
-var filtradas = [];
+const list = document.getElementById("list");
+var filtered = [];
 var res = [];
 
-function cadastrar() {
-    var titulo = document.getElementById("title");
-    var mensagem = document.getElementById("mensagem");
-    var autor = document.getElementById("author");
+function do_register() {
+    var title = document.getElementById("title");
+    var message = document.getElementById("message");
+    var author = document.getElementById("author");
     const login = document.getElementById("credential").value;
-    const senha = document.getElementById("passcode").value;
-    var credential = login + ":" + senha;
+    const passcode = document.getElementById("passcode").value;
+    var credential = login + ":" + passcode;
 
     fetch('http://localhost:8080/msgs', {
         method: 'POST',
@@ -20,33 +20,33 @@ function cadastrar() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            title: titulo.value,
-            msg: mensagem.value,
-            author: autor.value,
+            title: title.value,
+            msg: message.value,
+            author: author.value,
             credentials: credential
         })
     });
-    if (title.value.trim() || "" && msg.value.trim() || "" && author.value.trim() != "" || "" && login.trim() != "" || "" && senha.trim() != "") {
+    if (title.value.trim() || "" && msg.value.trim() || "" && author.value.trim() != "" || "" && login.trim() != "" || "" && passcode.trim() != "") {
 
         update({
-            title: titulo.value,
-            msg: mensagem.value,
-            author: autor.value
+            title: title.value,
+            msg: message.value,
+            author: author.value
         })
     } else {
 
-        alert("Necessário preencher todos os campos!")
+        alert("All fields are required!")
     }
     resetForm();
 }
 
-function resetForm(titulo, mensagem, autor) {
+function resetForm(title, message, author) {
 
     document.getElementById("title").value = "";
-    document.getElementById("mensagem").value = "";
+    document.getElementById("message").value = "";
     document.getElementById("author").value = "";
-    document.getElementById("deletar").value = "";
-    document.getElementById("filtro").value = "";
+    document.getElementById("id_to_delete").value = "";
+    document.getElementById("filter").value = "";
 }
 
 function update(msg) {
@@ -57,52 +57,44 @@ function update(msg) {
     listing(res);
 
 }
-fetch('http://localhost:8080/msgs').then(response => response.json()).then(guardaPromisse);
+fetch('http://localhost:8080/msgs').then(response => response.json()).then(keepPromisse);
 
 function listing(response) {
-    console.log(response);
+
     response.sort(comparator)
 
-    mensagens = response.map(msg => '<ul class="card-javan" ' + getRandomInt() + ` >#ID${msg.id} ${msg.frontend}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    messages = response.map(msg => '<ul class="card-javan" style="background-color: #444444;"' + ` >#ID${msg.id} ${msg.frontend}
     </br>
     <div style="color: #FFFFFF;padding: 0px 10px;"> <h4 style="font: italic bold 25px, sans-serif;">${msg.title}</div>
     <div style="color: #FFFFFF;padding: 0px 20px;"> <h4 style=""><xmp>${msg.msg}</xmp></div>
-    
     <div style="color: #FFFFFF; padding: 0px 10px;"> <h5  style="font: italic bold 25px, sans-serif;">Por: ${msg.author}</div></br></ul>`).join(" ");
     watch();
-    listagem.innerHTML = mensagens;
+    list.innerHTML = messages;
 
 }
 
-function guardaPromisse(promisse) {
+function keepPromisse(promisse) {
 
     res = promisse;
     listing(promisse);
 
 }
 
-function getRandomInt() {
-    min = Math.ceil(0);
-    max = Math.floor(99999);
-    return "style='background-color: #444444;'";
-}
-
 function filtering(value) {
 
-    filtradas = res.filter(msg => verificaTexto(msg.author, value) || verificaTexto(msg.title, value) || verificaTexto(msg.msg, value) || msg.id == value || msg.frontend == value);
-    if (filtradas.length == 0) {
+    filtered = res.filter(msg => verifyText(msg.author, value) || verificaTexto(msg.title, value) || verificaTexto(msg.msg, value) || msg.id == value || msg.frontend == value);
+    if (filtered.length == 0) {
 
-        listagem.innerHTML = "<h2 style='position: relative; text-align: center; color: #FFFFFF'> Nenhum resultado encontrado! </h2>"
+        list.innerHTML = "<h2 style='position: relative; text-align: center; color: #FFFFFF'> Results not found! </h2>"
     } else {
 
-        listing(filtradas)
+        listing(filtered)
     }
 }
 
-function verificaTexto(texto, value) {
+function verifyText(text, value) {
 
-    const temp = texto.split(" ");
+    const temp = text.split(" ");
 
     let fils = temp.filter(element => element.toLowerCase() == value.toLowerCase());
 
@@ -113,32 +105,31 @@ function verificaTexto(texto, value) {
 
 function watch() {
 
-    flag = document.getElementById("filtro").value.trim();
+    flag = document.getElementById("filter").value.trim();
 
     setInterval(function () {
 
-        let campo = document.getElementById("filtro").value.trim();
-        if (campo != "" && campo != flag) {
-            filtering(campo);
-            flag = campo;
+        let field = document.getElementById("filter").value.trim();
+        if (field != "" && field != flag) {
+            filtering(field);
+            flag = field;
 
-        } else if (campo == "" && flag != "") {
+        } else if (field == "" && flag != "") {
             flag = "";
             listing(res);
         }
 
-    }, 100)
+    }, 300)
 
 
 }
 
 function do_delete() {
 
-    const idd = document.getElementById("deletar");
+    const idd = document.getElementById("id_to_delete");
     const login = document.getElementById("credential").value;
-    const senha = document.getElementById("passcode").value;
-    var credential = login + ":" + senha;
-    console.log("apertou");
+    const passcode = document.getElementById("passcode").value;
+    var credential = login + ":" + passcode;
 
     fetch('http://localhost:8080/msgs/' + idd.value, {
         method: 'DELETE',
@@ -148,9 +139,9 @@ function do_delete() {
         },
     });
 
-    if (login.trim() == "" || "" && senha.trim() == "") {
+    if (login.trim() == "" || "" && passcode.trim() == "") {
 
-        alert("Necessário preencher a credencial e senha para poder deletar uma mensagem!")
+        alert("Need to fill in the credential and password before deleting a message!")
 
     } else {
 

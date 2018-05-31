@@ -52,15 +52,15 @@
             <input style="width: 50%; padding: 10px;" type="text" class="form-control" id="author" placeholder="Author">  
           </br>
 
-            <textarea style="width: 75%;padding: 10px;" type="text" class="form-control" id="mensagem" placeholder="Message" cols="30" rows="3"></textarea>
+            <textarea style="width: 75%;padding: 10px;" type="text" class="form-control" id="message" placeholder="Message" cols="30" rows="3"></textarea>
           </br>
-            <button style="width: 100%; position: relative;"type="button" class="btn btn-outline-success my-2 my-sm-0 pull-right button-position" onclick="cadastrar()"><b>--------- Send ---------</b></button>
+            <button style="width: 100%; position: relative;"type="button" class="btn btn-outline-success my-2 my-sm-0 pull-right button-position" onclick="do_register()"><b>--------- Send ---------</b></button>
             
 
         <hr style="position: relative; height:1px; border:none; color:#000; background-color:#000; margin-top: 25px; margin-bottom: 25px; width: 85%;">
         <? if($primeiro_ponto != NULL && $ultimo_ponto != NULL && $quantidade_de_trajetos>
 
-            <input style="width: 10%; padding: 10px; position: relative; border-radius: 6px;" type="text" id="deletar" placeholder="ID">
+            <input style="width: 10%; padding: 10px; position: relative; border-radius: 6px;" type="text" id="id_to_delete" placeholder="ID">
             <button style="position: relative;"  type="button" class="btn btn-outline-success my-2 my-sm-0 pull-right button-position" onclick="do_delete()"><b>Delete</b></button>
             <hr style="position: relative; height:1px; border:none; color:#000; background-color:#000; margin-top: 25px; margin-bottom: 25px; width: 85%;">
             <? if($primeiro_ponto != NULL && $ultimo_ponto != NULL && $quantidade_de_trajetos>    
@@ -74,7 +74,7 @@
     </div>
   </div>     
 </br></br></br> 
-  <div style="background: linear-gradient(#151515,#FFFFFF);" id="listagem">
+  <div style="background: linear-gradient(#151515,#FFFFFF);" id="list">
   </div>
 
 
