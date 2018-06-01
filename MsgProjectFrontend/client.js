@@ -82,7 +82,7 @@ function keepPromisse(promisse) {
 
 function filtering(value) {
 
-    filtered = res.filter(msg => verifyText(msg.author, value) || verificaTexto(msg.title, value) || verificaTexto(msg.msg, value) || msg.id == value || msg.frontend == value);
+    filtered = res.filter(msg => verifyText(msg.author, value) || verifyText(msg.title, value) || verifyText(msg.msg, value) || msg.id == value || msg.frontend == value);
     if (filtered.length == 0) {
 
         list.innerHTML = "<h2 style='position: relative; text-align: center; color: #FFFFFF'> Results not found! </h2>"

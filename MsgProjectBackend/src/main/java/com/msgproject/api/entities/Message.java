@@ -2,6 +2,7 @@ package com.msgproject.api.entities;
 
 import javax.validation.constraints.NotEmpty;
 
+
 public class Message {
 
 
