@@ -1,45 +1,34 @@
 package com.msgproject.api.services;
 
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.Random;
+import java.util.Stack;
 import org.springframework.stereotype.Service;
-
-import com.msgproject.api.entities.Message;
 
 @Service
 public class MessagesServiceImpl {
 
-	Map<String, Message> messages = new HashMap<String, Message>();
+	private Random rand = new Random();
+	private Stack<Integer> stack = new Stack<>();
 
-		
-	public Collection<Message> listMessages() {
+	public void add() {
 
-		return this.messages.values();
+		for (int i = 0; i < 100; i++) {
+
+			this.stack.add(rand.nextInt(100));
+		}
+
 	}
 
-	public Message listById(String id) {
+	public Integer remove() {
 
-		return this.messages.get(id);
-	}
+		try {
 
-	public Message register(Message message) {
-		
-		return this.messages.put(message.getId(), message);
-	}
+			return this.stack.pop();
 
-	public Message update(Message message) {
-		
-		this.messages.remove(message.getId());
-		return messages.put(message.getId(), message);
-	}
+		} catch (Exception e) {
 
-	public Message remove(String id) {
-
-		return this.messages.remove(id);
-
+			return -1;
+		}
 	}
 
 }
