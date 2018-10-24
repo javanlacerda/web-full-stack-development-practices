@@ -12,9 +12,9 @@ public class MessagesServiceImpl {
 
 	public void add() {
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 
-			this.stack.add(rand.nextInt(100));
+			this.stack.add(rand.nextInt(10000000));
 		}
 
 	}
@@ -29,6 +29,18 @@ public class MessagesServiceImpl {
 
 			return -1;
 		}
+	}
+
+	public void empty() {
+
+		this.stack = new Stack<>();
+	
+	}
+
+	public Stack all() {
+
+		return this.stack;
+
 	}
 
 }
